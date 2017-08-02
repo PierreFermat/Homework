@@ -105,7 +105,7 @@ public class GameWindow extends Frame {
         }
     }
 
-    private void render() {
+    public void paint(Graphics windowGraphics) {
         backbufferGraphics.setColor(Color.black);
         backbufferGraphics.fillRect(0, 0, 1024, 768);
         backbufferGraphics.drawImage(background, 0, 0, null);
@@ -116,5 +116,8 @@ public class GameWindow extends Frame {
         }
 
         windowGraphics.drawImage(backbufferImage, 0, 0, null);
+    }
+    private void render(){
+        repaint();
     }
 }
