@@ -7,7 +7,7 @@ public class Vector2D {
     public float x;
     public float y;
 
-    public Vector2D() {
+    public Vector2D(Vector2D position) {
         this(0, 0);
     }
 

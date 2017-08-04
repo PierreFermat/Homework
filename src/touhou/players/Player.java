@@ -38,13 +38,15 @@ public class Player {
         if (constraints != null) {
             constraints.make(position);
         }
+        if(inputManager.xPressed){
+            castSpell();
+        }
 
-        castSpell();
     }
 
     private void castSpell() {
         if (inputManager.xPressed) {
-            PlayerSpell newSpell = new PlayerSpell();
+            PlayerSpell newSpell = new PlayerSpell(position.add(3,0));
             playerSpells.add(newSpell);
         }
     }

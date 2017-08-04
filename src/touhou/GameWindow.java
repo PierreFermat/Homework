@@ -35,6 +35,8 @@ public class GameWindow extends Frame {
     Player player = new Player();
     ArrayList<PlayerSpell> playerSpells = new ArrayList<>();
     InputManager inputManager = new InputManager();
+    private int Backgroundy = -2000;
+    private int BackgroundSpeed = 1;
 
     public GameWindow() {
         background = SpriteUtils.loadImage("assets/images/background/0.png");
@@ -98,21 +100,27 @@ public class GameWindow extends Frame {
         }
     }
 
+    private void movebackground(){
+        Backgroundy += BackgroundSpeed;
+        if(Backgroundy > 0){
+            Backgroundy = 0;
+        }
+    }
     private void run() {
         player.run();
         for (PlayerSpell playerSpell : playerSpells) { //foreach
-            //playerSpell.run()
+            playerSpell.run();
         }
     }
 
     public void paint(Graphics windowGraphics) {
         backbufferGraphics.setColor(Color.black);
         backbufferGraphics.fillRect(0, 0, 1024, 768);
-        backbufferGraphics.drawImage(background, 0, 0, null);
+        backbufferGraphics.drawImage(background, 0, Backgroundy, null);
         player.render(backbufferGraphics);
-
+        movebackground();
         for (PlayerSpell playerSpell: playerSpells) {
-            //playerSpell.render(...)
+            playerSpell.render(backbufferGraphics);
         }
 
         windowGraphics.drawImage(backbufferImage, 0, 0, null);
