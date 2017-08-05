@@ -41,7 +41,7 @@ public class GameWindow extends Frame {
     public GameWindow() {
         background = SpriteUtils.loadImage("assets/images/background/0.png");
         player.inputManager = this.inputManager;
-        player.constraints = new Constraints(0, 768, 0, 384);
+        player.constraints = new Constraints(0, 720, 0, 364);
         player.playerSpells = this.playerSpells;
         setupGameLoop();
         setupWindow();
@@ -89,10 +89,10 @@ public class GameWindow extends Frame {
     public void loop() {
         while(true) {
             if (lastTimeUpdate == -1) {
-                lastTimeUpdate = System.currentTimeMillis();
+                lastTimeUpdate = System.nanoTime();
             }
-            currentTime = System.currentTimeMillis();
-            if (currentTime - lastTimeUpdate > 17) {
+            currentTime = System.nanoTime();
+            if (currentTime - lastTimeUpdate > 17000000) {
                 run();
                 render();
                 lastTimeUpdate = currentTime;
@@ -113,7 +113,8 @@ public class GameWindow extends Frame {
         }
     }
 
-    public void paint(Graphics windowGraphics) {
+    @Override
+    public void update(Graphics g) {
         backbufferGraphics.setColor(Color.black);
         backbufferGraphics.fillRect(0, 0, 1024, 768);
         backbufferGraphics.drawImage(background, 0, Backgroundy, null);
@@ -123,8 +124,9 @@ public class GameWindow extends Frame {
             playerSpell.render(backbufferGraphics);
         }
 
-        windowGraphics.drawImage(backbufferImage, 0, 0, null);
+        g.drawImage(backbufferImage, 0, 0, null);
     }
+
     private void render(){
         repaint();
     }

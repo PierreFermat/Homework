@@ -21,7 +21,7 @@ public class PlayerSpell {
     public PlayerSpell(Vector2D position){
         this.position = position;
         image = SpriteUtils.loadImage("assets/images/player-spells/a/1.png");
-        constraints = new Constraints(0,720,0,384);
+        constraints = new Constraints(0,720,0,364);
     }
 
     public void run(){
